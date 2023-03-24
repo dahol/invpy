@@ -1,0 +1,10 @@
+{% extends "inventory/base.html" %}
+{% block title %}
+    Project details
+{% endblock title %}
+{% block content %}
+    <h1>Project details</h1>
+    <p>ID: {{ project.id }}</p>
+    <p>Name: {{ project.name }}</p>
+    <p>Description: {{ project.desc }}</p>
+{% endblock content %}

@@ -1,0 +1,13 @@
+{% extends "inventory/base.html" %}
+{% block title %}
+  All items
+{% endblock title %}
+{% block content %}
+  <h3>All items</h3>
+  <a class="btn btn-outline-success" href="/create_items" role="button">New items</a>
+  {% for items in all_items %}
+    <div class="list-group col-5 p-1">
+      <a href="{{ items.id }}" class="list-group-item list-group-item-action">{{ items.name }}</a>
+    </div>
+  {% endfor %}
+{% endblock content %}

@@ -1,0 +1,10 @@
+{% extends "inventory/base.html" %}
+{% block title %}
+  Part details
+{% endblock title %}
+{% block content %}
+  <h1>Part details</h1>
+  <p>ID: {{ part.id }}</p>
+  <p>Name: {{ part.name }}</p>
+  <p>Description: {{ part.desc }}</p>
+{% endblock content %}

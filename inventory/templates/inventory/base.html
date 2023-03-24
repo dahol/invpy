@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <style type="text/css">
+      .sidenav {
+        height:100%;
+        width:160px;
+        position:fixed;
+        z-index:1;
+        top:0;
+        left:0;
+        background-color:#A2D9CE;
+        overflow-x: :hidden;
+        padding-top:35px;
+      }
+      .sidenav a {
+        padding: 6px 8px 6px 25px;
+        font-size: 25px;
+        color:#0B5345;
+        font: #818181;
+        display:block;
+      }
+
+      .sidenav a:hover {
+        color:#45B39D;
+      }
+
+      .main {
+        margin-left:160px;
+        padding:45px 0px;
+        background-color:#E8F6F3;
+        height:100%;
+      }
+
+    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {% block title %}
+      {% endblock title %}
+    </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+          crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="bg-info">
+      <div class="sidenav">
+        <a href="/" class="text-decoration-none fw-bold ">Home</a>
+        <a href="/project/all" class="text-decoration-none">Projects</a>
+        <a href="/task/all" class="text-decoration-none">Tasks</a>
+        <a href="/part/all" class="text-decoration-none">Parts</a>
+      </div>
+      <div class="main">
+        <div class="row justify-content-center">
+          <div class="col-10">
+            {% block content %}
+            {% endblock content %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+            integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+            integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+            crossorigin="anonymous"></script>
+  </body>
+</html>

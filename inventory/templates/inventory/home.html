@@ -1,0 +1,35 @@
+{% extends "inventory/base.html" %}
+{% block title %}
+    Home
+{% endblock title %}
+{% block content %}
+    <div class="container">
+        <h2>Latest projects</h2>
+        {% for project in projects %}
+            <div class="list-group col-5 p-1">
+                <a href="project/{{ project.id }}"
+                   class="list-group-item list-group-item-action">{{ project.id }} {{ project.name }}</a>
+            </div>
+        {% endfor %}
+    </div>
+    <hr>
+    <div class="container">
+        <h2>Latest tasks</h2>
+        {% for task in tasks %}
+            <div class="list-group col-5 p-1">
+                <a href="task/{{ task.id }}"
+                   class="list-group-item list-group-item-action">{{ task.id }} {{ task.name }}</a>
+            </div>
+        {% endfor %}
+    </div>
+    <hr>
+    <div class="container">
+        <h2>Latest parts</h2>
+        {% for part in parts %}
+            <div class="list-group col-5 p-1">
+                <a href="part/{{ part.id }}"
+                   class="list-group-item list-group-item-action">{{ part.id }} {{ part.name }}</a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

@@ -1,0 +1,16 @@
+{% extends "inventory/base.html" %}
+{% block title %}
+    Create new model
+{% endblock title %}
+{% block content %}
+    <h1>Create new model</h1>
+    <form method="post" action="/create_model">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                {{ form.as_p }}
+                <button class="btn btn-success" type="submit" name="save">Create new</button>
+            </div>
+        </div>
+    </form>
+{% endblock content %}

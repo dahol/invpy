@@ -1,0 +1,16 @@
+{% extends "inventory/base.html" %}
+{% block title %}
+  All projects
+{% endblock title %}
+{% block content %}
+  <h3>All projects</h3>
+  <a class="btn btn-outline-success" href="/create_project" role="button">New project</a>
+  {% for project in all_projects %}
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <a href="{{ project.id }}" class="text-decoration-none text-reset">Name: {{ project.name }}</a>
+        <p>Description: {{ project.desc }}</p>
+      </li>
+    </ul>
+  {% endfor %}
+{% endblock content %}
