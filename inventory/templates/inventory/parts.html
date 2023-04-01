@@ -5,7 +5,7 @@
 {% block content %}
   <h3>All parts</h3>
   <a class="btn btn-outline-success" href="/create_part" role="button">New part</a>
-  {% for part in all_parts %}
+  {% for part in parts %}
     <div class="list-group col-5 p-1">
       <a href="{{ part.id }}" class="list-group-item list-group-item-action">{{ part.name }}</a>
     </div>

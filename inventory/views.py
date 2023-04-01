@@ -11,8 +11,9 @@ def home(response):
     models = Model.objects.all()[:5]
     parts = Part.objects.all()[:5]
     tasks = Task.objects.all()[:5]
+    items = Item.objects.all()[:5]
     projects = Project.objects.all()[:5]
-    return render(response, "inventory/home.html", {"makes": makes, "models": models, "parts": parts, "projects": projects, "tasks": tasks})
+    return render(response, "inventory/home.html", {"makes": makes, "models": models, "parts": parts, "projects": projects, "tasks": tasks, "items": items})
 
 # // TODO: Make some sort of dashboard on landing page
 
@@ -25,8 +26,8 @@ def item(response, id):
 
 
 def items(response):
-    i = Item.objects.all()
-    return render(response, "inventory/items.html", {"items": i})
+    items = Item.objects.all()
+    return render(response, "inventory/items.html", {"items": items})
 
 
 def create_item(response):
@@ -35,9 +36,7 @@ def create_item(response):
         if f.is_valid():
             n = f.cleaned_data["name"]
             d = f.cleaned_data["desc"]
-            c = f.cleaned_data["created_at"]
-            u = f.cleaned_data["updated_at"]
-            t = Item(name=n, desc=d, created_at=c, updated_at=u)
+            t = Item(name=n, desc=d)
             t.save()
         return HttpResponseRedirect("item/%i" % t.id)
     else:
@@ -54,8 +53,8 @@ def make(response, id):
 
 
 def makes(response):
-    all_makes = Make.objects.all()
-    return render(response, "inventory/makes.html", {"all_makes": all_makes})
+    makes = Make.objects.all()
+    return render(response, "inventory/makes.html", {"makes": makes})
 
 
 def create_make(response):
@@ -64,8 +63,6 @@ def create_make(response):
         if f.is_valid():
             n = f.cleaned_data["name"]
             d = f.cleaned_data["desc"]
-            c = f.cleaned_data["created_at"]
-            u = f.cleaned_data["updated_at"]
             t = Make(name=n, desc=d)
             t.save()
         return HttpResponseRedirect("make/%i" % t.id)
@@ -82,8 +79,8 @@ def model(response, id):
 
 
 def models(response):
-    all_models = Model.objects.all()
-    return render(response, "inventory/models.html", {"all_models": all_models})
+    models = Model.objects.all()
+    return render(response, "inventory/models.html", {"models": models})
 
 
 def create_model(response):
@@ -92,8 +89,6 @@ def create_model(response):
         if f.is_valid():
             n = f.cleaned_data["name"]
             d = f.cleaned_data["desc"]
-            c = f.cleaned_data["created_at"]
-            u = f.cleaned_data["updated_at"]
             t = Model(name=n, desc=d)
             t.save()
         return HttpResponseRedirect("model/%i" % t.id)
@@ -111,8 +106,8 @@ def part(response, id):
 
 
 def parts(response):
-    all_parts = Part.objects.all()
-    return render(response, "inventory/parts.html", {"all_parts": all_parts})
+    parts = Part.objects.all()
+    return render(response, "inventory/parts.html", {"parts": parts})
 
 
 def create_part(response):
@@ -121,9 +116,7 @@ def create_part(response):
         if f.is_valid():
             n = f.cleaned_data["name"]
             d = f.cleaned_data["desc"]
-            c = f.cleaned_data["created_at"]
-            u = f.cleaned_data["updated_at"]
-            t = Part(name=n, desc=d, created_at=c, updated_at=u)
+            t = Part(name=n, desc=d)
             t.save()
         return HttpResponseRedirect("part/%i" % t.id)
     else:
@@ -139,8 +132,8 @@ def task(response, id):
 
 
 def tasks(response):
-    all_tasks = Task.objects.all()
-    return render(response, "inventory/tasks.html", {"all_tasks": all_tasks})
+    tasks = Task.objects.all()
+    return render(response, "inventory/tasks.html", {"tasks": tasks})
 
 
 def create_task(response):
@@ -149,9 +142,7 @@ def create_task(response):
         if f.is_valid():
             n = f.cleaned_data["name"]
             d = f.cleaned_data["desc"]
-            c = f.cleaned_data["created_at"]
-            u = f.cleaned_data["updated_at"]
-            t = Task(name=n, desc=d, created_at=c, updated_at=u)
+            t = Task(name=n, desc=d)
             t.save()
         return HttpResponseRedirect("task/%i" % t.id)
     else:
@@ -167,8 +158,8 @@ def project(response, id):
 
 
 def projects(response):
-    all_projects = Project.objects.all()
-    return render(response, "inventory/projects.html", {"all_projects": all_projects})
+    projects = Project.objects.all()
+    return render(response, "inventory/projects.html", {"projects": projects})
 
 
 def create_project(response):
@@ -177,9 +168,7 @@ def create_project(response):
         if f.is_valid():
             n = f.cleaned_data["name"]
             d = f.cleaned_data["desc"]
-            c = f.cleaned_data["created_at"]
-            u = f.cleaned_data["updated_at"]
-            t = Project(name=n, desc=d, created_at=c, updated_at=u)
+            t = Project(name=n, desc=d)
             t.save()
         return HttpResponseRedirect("project/%i" % t.id)
     else:

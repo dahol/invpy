@@ -3,6 +3,17 @@
     Home
 {% endblock title %}
 {% block content %}
+    <hr>
+    <div class="container">
+        <h2>Latest items</h2>
+        {% for item in items %}
+            <div class="list-group col-5 p-1">
+                <a href="item/{{ item.id }}"
+                class="list-group-item list-group-item-action">{{ item.id }} {{ item.name }}</a>
+            </div>
+        {% endfor %}
+    </div>
+    <hr>
     <div class="container">
         <h2>Latest projects</h2>
         {% for project in projects %}
@@ -32,4 +43,5 @@
             </div>
         {% endfor %}
     </div>
+    
 {% endblock content %}

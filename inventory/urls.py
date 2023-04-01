@@ -25,6 +25,7 @@ urlpatterns = [
 
     path("create_project", views.create_project, name="create_project"),
     path("create_task", views.create_task, name="create_task"),
+    path("create_item", views.create_item, name="create_item"),
     path("create_part", views.create_part, name="create_part"),
     path("create_make", views.create_make, name="create_make"),
     path("create_model", views.create_model, name="create_model"),
