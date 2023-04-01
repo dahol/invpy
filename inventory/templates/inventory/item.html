@@ -4,8 +4,15 @@
 {% endblock title %}
 {% block content %}
   <h3>Item details</h3>
-  <p>{{ ls.name }}</p>
   <p>ID: {{ item.id }}</p>
   <p>Name: {{ item.name }}</p>
+  <p>CPU: {{ item.cpu }}</p>
+  <p>Mem: {{ item.mem }}</p>
+  <p>disk0: {{ item.disk0 }}</p>
+  <p>disk1: {{ item.disk1 }}</p>
+  <p>disk2: {{ item.disk2 }}</p>
+  <p>disk3: {{ item.disk3 }}</p>
+  <p>disk4: {{ item.disk4 }}</p>
   <p>Description: {{ item.desc }}</p>
+  <p>Last update: {{ item.updated_at }}</p>
 {% endblock content %}
