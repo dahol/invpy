@@ -1,0 +1,16 @@
+{% extends "inventory/base.html" %}
+{% block title %}
+  All makes
+{% endblock title %}
+{% block content %}
+  <h3>All makes</h3>
+  <a class="btn btn-outline-success" href="/create_make" role="button">New makes</a>
+  {% for make in makes %}
+{% comment %}     <div class="list-group col-5 p-1">
+      <a href="{{ make.id }}" class="list-group-make list-group-make-action">{{ make.name }}</a>
+    </div> {% endcomment %}
+    <ul class="list-group">
+      <li class="list-group-item"><a href="{{ make.id }}" class="text-decoration-none text-dark">{{ make.name }}</a></li>
+    </ul>
+  {% endfor %}
+{% endblock content %}
