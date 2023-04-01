@@ -21,8 +21,8 @@ def home(response):
 
 
 def item(response, id):
-    i = Item.objects.get(id=id)
-    return render(response, "inventory/item.html", {"item": i})
+    item = Item.objects.get(id=id)
+    return render(response, "inventory/item.html", {"item": item})
 
 
 def items(response):
@@ -48,8 +48,8 @@ def create_item(response):
 
 
 def make(response, id):
-    m = Make.objects.get(id=id)
-    return render(response, "inventory/make.html", {"make": m})
+    make = Make.objects.get(id=id)
+    return render(response, "inventory/make.html", {"make": make})
 
 
 def makes(response):
@@ -74,8 +74,8 @@ def create_make(response):
 # Model
 
 def model(response, id):
-    m = Model.objects.get(id=id)
-    return render(response, "inventory/model.html", {"model": m})
+    model = Model.objects.get(id=id)
+    return render(response, "inventory/model.html", {"model": model})
 
 
 def models(response):
@@ -101,8 +101,8 @@ def create_model(response):
 
 
 def part(response, id):
-    p = Part.objects.get(id=id)
-    return render(response, "inventory/part.html", {"part": p})
+    part = Part.objects.get(id=id)
+    return render(response, "inventory/part.html", {"part": part})
 
 
 def parts(response):
@@ -127,8 +127,8 @@ def create_part(response):
 # Task
 
 def task(response, id):
-    t = Task.objects.get(id=id)
-    return render(response, "inventory/task.html", {"task": t})
+    task = Task.objects.get(id=id)
+    return render(response, "inventory/task.html", {"task": task})
 
 
 def tasks(response):
@@ -153,8 +153,8 @@ def create_task(response):
 # Project
 
 def project(response, id):
-    p = Project.objects.get(id=id)
-    return render(response, "inventory/project.html", {"project": p})
+    project = Project.objects.get(id=id)
+    return render(response, "inventory/project.html", {"project": project})
 
 
 def projects(response):
