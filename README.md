@@ -30,6 +30,4 @@ git clone url
 
 cd invpy/
 
-docker build . -t invpy/invpy
-
-docker run -d invpy/invpy
+run docker.ps1
