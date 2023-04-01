@@ -1,3 +1,8 @@
+# Custom
+
+*.ext
+pyvenv.cfg
+
 # Django #
 *.log
 *.pot
@@ -9,7 +14,7 @@ media
 # Backup files # 
 *.bak 
 
-*.exe
+
 
 # If you are using PyCharm # 
 # User-specific stuff
