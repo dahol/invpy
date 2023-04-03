@@ -21,7 +21,7 @@ tzdata
 
 ```
 
-git clone url
+git clone https://github.com/dahol/invpy
 
 cd invpy/
 
@@ -47,7 +47,7 @@ python manage.py runserver
 
 ```
 
-git clone url
+git clone https://github.com/dahol/invpy
 
 cd invpy/
 
