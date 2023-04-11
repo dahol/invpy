@@ -4,15 +4,15 @@
 
 PostgresQL (or replace with sqlite3 in settings.py)
 
-## Packages used
+## Packages used (as of 11.04.2023)
 
 ```
-asgiref
-Django
-psycopg2
-python-dotenv
-sqlparse
-tzdata
+asgiref==3.6.0
+Django==4.1.7
+psycopg2-binary==2.9.5
+python-dotenv==1.0.0
+sqlparse==0.4.3
+tzdata==2023.3
 ```
 
 ## How to use
@@ -53,6 +53,6 @@ cd invpy/
 
 pip freeze > .\requirements.txt
 
-run docker.ps1
+run docker.sh
 
 ```
