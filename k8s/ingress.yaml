@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: invpy-ingress
+  labels:
+    name: invpy-ingress
+spec:
+  tls:
+    - hosts:
+      - inventory.findmyapp.net
+      secretName: inventory-findmyapp-net-secret
+  rules:
+  - host: inventory.findmyapp.net
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: invpy-svc
+            port: 
+              number: 80
