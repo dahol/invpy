@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: invpy
+spec:
+  selector:
+    matchLabels:
+      app: invpy
+  template:
+    metadata:
+      labels:
+        app: invpy
+    spec:
+      containers:
+      - name: invpy
+        image: dahol/invpy
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8000

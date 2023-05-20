@@ -1,19 +1,28 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import Item, Task, Model, Make, Project, Part
 from .forms import CreateNewProject, CreateNewTask, CreateNewPart, CreateNewItem, CreateNewMake, CreateNewModel
 
 # Create your views here.
 
-
 def home(response):
-    makes = Make.objects.all()[:5]
-    models = Model.objects.all()[:5]
-    parts = Part.objects.all()[:5]
-    tasks = Task.objects.all()[:5]
-    items = Item.objects.all()[:5]
-    projects = Project.objects.all()[:5]
+    makes = Make.objects.all()[:5].select_related().values('id', 'name')
+    models = Model.objects.all()[:5].select_related().values('id', 'name')
+    parts = Part.objects.all()[:5].select_related().values('id', 'name')
+    tasks = Task.objects.all()[:5].select_related().values('id', 'name')
+    items = Item.objects.all()[:5].select_related().values('id', 'name')
+    projects = Project.objects.all()[:5].select_related().values('id', 'name')
     return render(response, "inventory/home.html", {"makes": makes, "models": models, "parts": parts, "projects": projects, "tasks": tasks, "items": items})
+
+# optimized queries above
+#def home(response):
+#    makes = Make.objects.all()[:5]
+#    models = Model.objects.all()[:5]
+#    parts = Part.objects.all()[:5]
+#    tasks = Task.objects.all()[:5]
+#    items = Item.objects.all()[:5]
+#    projects = Project.objects.all()[:5]
+#    return render(response, "inventory/home.html", {"makes": makes, "models": models, "parts": parts, "projects": projects, "tasks": tasks, "items": items})
 
 # // TODO: Make some sort of dashboard on landing page
 
@@ -21,8 +30,9 @@ def home(response):
 
 
 def item(response, id):
-    i = Item.objects.get(id=id)
-    return render(response, "inventory/item.html", {"item": i})
+    #item = Item.objects.get(id=id)
+    item = get_object_or_404(Item, id=id)
+    return render(response, "inventory/item.html", {"item": item})
 
 
 def items(response):
@@ -38,7 +48,8 @@ def create_item(response):
             d = f.cleaned_data["desc"]
             t = Item(name=n, desc=d)
             t.save()
-        return HttpResponseRedirect("item/%i" % t.id)
+        #return HttpResponseRedirect("item/%i" % t.id)
+        return redirect("item", id=t.id)
     else:
         f = CreateNewItem()
     return render(response, "inventory/create_item.html", {"form": f})
@@ -48,8 +59,8 @@ def create_item(response):
 
 
 def make(response, id):
-    m = Make.objects.get(id=id)
-    return render(response, "inventory/make.html", {"make": m})
+    make = Make.objects.get(id=id)
+    return render(response, "inventory/make.html", {"make": make})
 
 
 def makes(response):
@@ -74,8 +85,8 @@ def create_make(response):
 # Model
 
 def model(response, id):
-    m = Model.objects.get(id=id)
-    return render(response, "inventory/model.html", {"model": m})
+    model = Model.objects.get(id=id)
+    return render(response, "inventory/model.html", {"model": model})
 
 
 def models(response):
@@ -101,8 +112,8 @@ def create_model(response):
 
 
 def part(response, id):
-    p = Part.objects.get(id=id)
-    return render(response, "inventory/part.html", {"part": p})
+    part = Part.objects.get(id=id)
+    return render(response, "inventory/part.html", {"part": part})
 
 
 def parts(response):
@@ -127,8 +138,8 @@ def create_part(response):
 # Task
 
 def task(response, id):
-    t = Task.objects.get(id=id)
-    return render(response, "inventory/task.html", {"task": t})
+    task = Task.objects.get(id=id)
+    return render(response, "inventory/task.html", {"task": task})
 
 
 def tasks(response):
@@ -153,8 +164,8 @@ def create_task(response):
 # Project
 
 def project(response, id):
-    p = Project.objects.get(id=id)
-    return render(response, "inventory/project.html", {"project": p})
+    project = Project.objects.get(id=id)
+    return render(response, "inventory/project.html", {"project": project})
 
 
 def projects(response):
