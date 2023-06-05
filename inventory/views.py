@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .models import Item, Task, Model, Make, Project, Part
 from .forms import UpdateItemForm, CreateNewProject, CreateNewTask, CreateNewPart, CreateNewItem, CreateNewMake, CreateNewModel
 
+
 # Create your views here.
 
 
@@ -13,19 +14,11 @@ def home(response):
     tasks = Task.objects.all()[:5].select_related().values('id', 'name')
     items = Item.objects.all()[:5].select_related().values('id', 'name')
     projects = Project.objects.all()[:5].select_related().values('id', 'name')
-    return render(response, "inventory/home.html", {"makes": makes, "models": models, "parts": parts, "projects": projects, "tasks": tasks, "items": items})
+    q = response.GET.get('q', '')  # get the search query, if any
+    # case-insensitive search in item names
+    items_q = Item.objects.filter(name__icontains=q)
+    return render(response, "inventory/home.html", {"makes": makes, "models": models, "parts": parts, "projects": projects, "tasks": tasks, "items": items, "items_q": items_q, 'q': q})
 
-# optimized queries above
-# def home(response):
-#    makes = Make.objects.all()[:5]
-#    models = Model.objects.all()[:5]
-#    parts = Part.objects.all()[:5]
-#    tasks = Task.objects.all()[:5]
-#    items = Item.objects.all()[:5]
-#    projects = Project.objects.all()[:5]
-#    return render(response, "inventory/home.html", {"makes": makes, "models": models, "parts": parts, "projects": projects, "tasks": tasks, "items": items})
-
-# // TODO: Make some sort of dashboard on landing page
 
 # Item
 
@@ -93,6 +86,7 @@ def create_make(response):
 
 
 # Model
+
 
 def model(response, id):
     model = Model.objects.get(id=id)
