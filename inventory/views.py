@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import Item, Task, Model, Make, Project, Part
-from .forms import CreateNewProject, CreateNewTask, CreateNewPart, CreateNewItem, CreateNewMake, CreateNewModel
+from .forms import UpdateItemForm, CreateNewProject, CreateNewTask, CreateNewPart, CreateNewItem, CreateNewMake, CreateNewModel
 
 # Create your views here.
+
 
 def home(response):
     makes = Make.objects.all()[:5].select_related().values('id', 'name')
@@ -15,7 +16,7 @@ def home(response):
     return render(response, "inventory/home.html", {"makes": makes, "models": models, "parts": parts, "projects": projects, "tasks": tasks, "items": items})
 
 # optimized queries above
-#def home(response):
+# def home(response):
 #    makes = Make.objects.all()[:5]
 #    models = Model.objects.all()[:5]
 #    parts = Part.objects.all()[:5]
@@ -30,13 +31,22 @@ def home(response):
 
 
 def item(response, id):
-    #item = Item.objects.get(id=id)
     item = get_object_or_404(Item, id=id)
-    return render(response, "inventory/item.html", {"item": item})
+
+    if response.method == "POST":
+        form = UpdateItemForm(response.POST or None,
+                              response.FILES or None, instance=item)
+        if form.is_valid():
+            form.save()
+            return redirect("item", id=item.id)
+    else:
+        form = UpdateItemForm(instance=item)
+
+    return render(response, "inventory/item.html", {"item": item, "form": form})
 
 
 def items(response):
-    items = Item.objects.all()
+    items = Item.objects.order_by('-updated_at')[:100]
     return render(response, "inventory/items.html", {"items": items})
 
 
@@ -48,7 +58,7 @@ def create_item(response):
             d = f.cleaned_data["desc"]
             t = Item(name=n, desc=d)
             t.save()
-        #return HttpResponseRedirect("item/%i" % t.id)
+        # return HttpResponseRedirect("item/%i" % t.id)
         return redirect("item", id=t.id)
     else:
         f = CreateNewItem()
@@ -64,7 +74,7 @@ def make(response, id):
 
 
 def makes(response):
-    makes = Make.objects.all()
+    makes = Make.objects.order_by('-updated_at')[:100]
     return render(response, "inventory/makes.html", {"makes": makes})
 
 
@@ -90,7 +100,7 @@ def model(response, id):
 
 
 def models(response):
-    models = Model.objects.all()
+    models = Model.objects.order_by('-updated_at')[:100]
     return render(response, "inventory/models.html", {"models": models})
 
 
@@ -117,7 +127,7 @@ def part(response, id):
 
 
 def parts(response):
-    parts = Part.objects.all()
+    parts = Part.objects.order_by('-updated_at')[:100]
     return render(response, "inventory/parts.html", {"parts": parts})
 
 
@@ -143,7 +153,7 @@ def task(response, id):
 
 
 def tasks(response):
-    tasks = Task.objects.all()
+    tasks = Task.objects.order_by('-updated_at')[:100]
     return render(response, "inventory/tasks.html", {"tasks": tasks})
 
 
@@ -169,7 +179,7 @@ def project(response, id):
 
 
 def projects(response):
-    projects = Project.objects.all()
+    projects = Project.objects.order_by('-updated_at')[:100]
     return render(response, "inventory/projects.html", {"projects": projects})
 
 

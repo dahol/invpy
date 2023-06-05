@@ -33,6 +33,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
 
 # Application definition
 
@@ -81,21 +84,20 @@ WSGI_APPLICATION = 'inventory_py.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    # 'default': {
+    #    'ENGINE': 'django.db.backends.sqlite3',
+    #    'NAME': BASE_DIR / 'db.sqlite3',
+    # }
+
+    # Use this for postgresql
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('PSQL_NAME'),
+        'USER': os.getenv('PSQL_USER'),
+        'PASSWORD': os.getenv('PSQL_PASSWORD'),
+        'HOST': os.getenv('PSQL_HOST'),
+        'PORT': os.getenv('PSQL_PORT'),
     }
-     
-    ## Use this for postgresql
-    
-    #'default': {
-    #    'ENGINE': 'django.db.backends.postgresql',
-    #    'NAME': os.getenv('PSQL_NAME'),
-    #    'USER': os.getenv('PSQL_USER'),
-    #    'PASSWORD': os.getenv('PSQL_PASSWORD'),
-    #    'HOST': os.getenv('PSQL_HOST'),
-    #    'PORT': os.getenv('PSQL_PORT'),
-    #}
 }
 
 
