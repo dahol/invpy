@@ -4,17 +4,6 @@
 
 PostgresQL (or replace with sqlite3 in settings.py)
 
-## Packages used (as of 11.04.2023)
-
-```
-asgiref==3.6.0
-Django==4.1.7
-psycopg2-binary==2.9.5
-python-dotenv==1.0.0
-sqlparse==0.4.3
-tzdata==2023.3
-```
-
 ## How to use
 
 ### Local
