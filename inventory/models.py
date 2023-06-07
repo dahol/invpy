@@ -11,6 +11,12 @@ class Status(models.Model):
         return self.name
 
 
+class ItemImage(models.Model):
+    item = models.ForeignKey(
+        Item, related_name='images', on_delete=models.CASCADE)
+    file = models.ImageField(upload_to=item_image_path)
+
+
 def item_image_path(instance, filename):
     # split filename into name and extension
     name, ext = os.path.splitext(filename)
