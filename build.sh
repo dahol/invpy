@@ -13,7 +13,7 @@ done
 
 if [ "$build" = "true" ] ; then
     echo "Building.."
-    docker build . -t dahol/invpy
+    docker build . -t dahol/invpy:latest
     echo "Done building!"
     elif [ "$build" = "false" ] ; then
     echo "Skipping build.."
@@ -23,7 +23,7 @@ fi
 
 if [ "$push" = "true" ] ; then
     echo "Pushing.."
-    docker push dahol/invpy
+    docker push dahol/invpy:latest
     echo "Done pushing!"
     elif [ "$push" = "false" ] ; then
     echo "Skipping push.."

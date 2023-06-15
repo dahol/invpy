@@ -57,7 +57,7 @@ run docker.sh
     - Arguments:
       - `-b true` to build
       - `-p true` to push
-      - ex: `./build.sh -b true -p true`
+      - ex: `sudo ./build.sh -b true -p true`
 
   - Deploy.sh
 
