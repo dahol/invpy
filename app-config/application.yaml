@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: invpy
+  namespace: argocd
+spec:
+  project: invpy
+  source:
+    repoURL: https://github.com/dahol/invpy
+    targetRevision: main
+    path: app-config/dev
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: invpy
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true

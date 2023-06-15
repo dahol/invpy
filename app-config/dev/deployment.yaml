@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: invpy-deployment
+  namespace: invpy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: invpy
+  template:
+    metadata:
+      labels:
+        app: invpy
+    spec:
+      containers:
+        - name: invpy
+          image: dahol/invpy
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
