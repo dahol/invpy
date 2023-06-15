@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: invpy
-          image: dahol/invpy
+          image: dahol/invpy:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8000
