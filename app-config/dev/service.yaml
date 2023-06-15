@@ -7,6 +7,7 @@ spec:
   selector:
     app: invpy
   ports:
-    - protocol: TCP
+    - name: invpy-service-port
+      protocol: TCP
       port: 3000
       targetPort: 8000
