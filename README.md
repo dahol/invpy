@@ -68,4 +68,4 @@ run docker.sh
       - `-d database`
       - `-p port`
 
-- Docker compose (tba)
+- Docker compose (maybe tba)
