@@ -21,4 +21,4 @@ spec:
               service:
                 name: invpy-service
                 port:
-                  name: invpy-port
+                  number: 3000
