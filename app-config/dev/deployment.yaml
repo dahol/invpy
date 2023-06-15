@@ -16,6 +16,6 @@ spec:
       containers:
         - name: invpy
           image: dahol/invpy
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - containerPort: 8000
