@@ -4,7 +4,6 @@ metadata:
   name: invpy-ingress
   namespace: invpy
   annotations:
-    kubernetes.io/ingress.class: traefik
     cert-manager.io/cluster-issuer: letsencrypt-staging
 spec:
   tls:
