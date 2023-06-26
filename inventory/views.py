@@ -24,7 +24,7 @@ def home(response):
 
 
 def item(response, id):
-    item = get_object_or_404(Item, id=id)
+    item = get_object_or_404(Item.objects.prefetch_related('images'), id=id)
 
     if response.method == "POST":
         form = UpdateItemForm(response.POST or None,
