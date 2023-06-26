@@ -12,38 +12,21 @@
           <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
           {% if field.field.widget.input_type == 'file' %}
             <input type="{{ field.field.widget.input_type }}" class="form-control" id="{{ field.id_for_label }}" name="{{ field.name }}" onchange="previewImage(event)">
-            {% if field.value %}
-              <img id="preview" src="{{ field.value.url }}" style="max-width: 200px; max-height: 200px; margin-top: 1rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#imageModal">
-
-              <!-- Modal -->
-              <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-lg">
-                  <div class="modal-content">
-                    <div class="modal-body">
-                      <img id="modalImage" src="{{ field.value.url }}" style="max-width: 100%;">
-                    </div>
-                  </div>
-                </div>
-              </div>
             {% else %}
-              <img id="preview" style="display: none; max-width: 200px; max-height: 200px; margin-top: 1rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#imageModal">
-
-              <!-- Modal -->
-              <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-lg">
-                  <div class="modal-content">
-                    <div class="modal-body">
-                      <img id="modalImage" style="max-width: 100%;">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            {% endif %}
-          {% else %}
             <input type="{{ field.field.widget.input_type }}" class="form-control" id="{{ field.id_for_label }}" name="{{ field.name }}" value="{{ field.value }}">
           {% endif %}
         </div>
       {% endfor %}
+
+      <!-- Iterate over all associated images -->
+      <div class="d-flex flex-wrap">
+        {% for image in item.images.all %}
+          <a href="{{ image.file.url }}" target="_blank">
+            <img id="preview{{ forloop.counter }}" src="{{ image.file.url }}" style="max-width: 200px; max-height: 200px; margin: 1rem; cursor: pointer;">
+          </a>
+        {% endfor %}
+      </div>
+
       <button type="submit" class="btn btn-primary">Update</button>
     </form>
   </div>
@@ -52,20 +35,10 @@
     function previewImage(event) {
       var reader = new FileReader();
       reader.onload = function(){
-        var output = document.getElementById('preview');
+        var output = document.getElementById('preview' + event.target.dataset.index);
         output.src = reader.result;
-        output.style.display = 'inline';  // make the image visible if it was hidden
-        document.getElementById('modalImage').src = reader.result;
       };
       reader.readAsDataURL(event.target.files[0]);
-    }
-
-    // Update modal image src when thumbnail image is clicked
-    var preview = document.getElementById('preview');
-    if (preview) {  // check that the image element exists
-      preview.addEventListener('click', function() {
-        document.getElementById('modalImage').src = this.src;
-      });
     }
   </script>
 
